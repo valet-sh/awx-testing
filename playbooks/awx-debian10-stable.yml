@@ -1,0 +1,31 @@
+---
+
+- hosts: localhost
+  gather_facts: true
+  vars:
+    instance_name: awx-debian10-stable
+    action: start
+  roles:
+    - lxd-container
+
+- hosts: "{{ hostvars.localhost.container_name }}"
+  gather_facts: false
+  roles:
+    - python2
+
+- hosts: "{{ hostvars.localhost.container_name }}"
+  gather_facts: true
+  vars:
+    target_distribution: "Debian"
+    target_distribution_major_version: 'buster'
+    target_repository: "debian-stable"
+  roles:
+    - awx-instance
+
+#- hosts: localhost
+#  gather_facts: true
+#  vars:
+#    instance_name: awx-debian10-stable
+#    action: terminate
+#  roles:
+#    - lxd-container

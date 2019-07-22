@@ -1,0 +1,40 @@
+---
+
+- name: install python2
+  raw: test -e /usr/bin/python && echo -n "ok" || (apt -y update && apt install -y python-minimal)
+  register: python_result
+
+- name: delete timezone file
+  file:
+    state: absent
+    path: "/etc/timezone"
+
+- name: set new timezone
+  lineinfile:
+    create: yes
+    mode: 0644
+    path: /etc/timezone
+    line: '{{ timezone }}'
+
+- name: delete localtime binary file
+  file:
+    state: absent
+    path: "/etc/localtime"
+
+- name: reconfigure timezone
+  shell: "dpkg-reconfigure -f noninteractive tzdata"
+
+- name: be sure the common packages are installed
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items: "{{ base_packages }}"
+
+- name: ensure de_DE.UTF-8 locale is present
+  locale_gen:
+    name: de_DE.UTF-8
+    state: present
+
+- name: Update repository caches
+  apt:
+    update_cache: yes

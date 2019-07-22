@@ -1,0 +1,20 @@
+---
+
+- name: check for lxd unix socket
+  set_fact:
+    lxd_unix_socket: "{{ item }}"
+  with_first_found:
+    - "/var/lib/lxd/unix.socket"
+    - "/var/snap/lxd/common/lxd/unix.socket"
+
+- name: set container_name var
+  set_fact:
+    container_name: "{{ instance_name }}"
+
+- name: include start tasks
+  include_tasks: start.yml
+  when: action == "start"
+
+- name: include terminate tasks
+  include_tasks: terminate.yml
+  when: action == "terminate"

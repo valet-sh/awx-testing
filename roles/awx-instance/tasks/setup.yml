@@ -1,0 +1,13 @@
+---
+
+- name: setup | run setup commands
+  shell: "{{ item }}"
+  environment:
+    AWX_SETTINGS_FILE: "{{ awx_config_dir }}/settings.py"
+  become: true
+  become_user: "{{ awx_user }}"
+  with_items:
+    - "echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'root@localhost', 'password')\" | awx-manage shell"
+    - "awx-manage provision_instance --hostname=$(hostname)"
+    - "awx-manage register_queue --queuename=tower --hostnames=$(hostname)"
+    - "awx-manage create_preload_data"

@@ -1,0 +1,21 @@
+---
+
+- name: systemd | postgresql | started
+  systemd:
+    name: postgresql
+    state: started
+
+- name: systemd | postgresql | stopped
+  systemd:
+    name: postgresql
+    state: stopped
+
+- name: systemd | postgresql | restarted
+  systemd:
+    name: postgresql
+    state: restarted
+
+- name: systemd | postgresql | reloaded
+  systemd:
+    name: postgresql
+    state: reloaded

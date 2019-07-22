@@ -1,0 +1,25 @@
+---
+
+- name: systemd | nginx | started
+  systemd:
+    name: nginx
+    state: started
+  become: yes
+
+- name: systemd | nginx | stopped
+  systemd:
+    name: nginx
+    state: stopped
+  become: yes
+
+- name: systemd | nginx | restarted
+  systemd:
+    name: nginx
+    state: restarted
+  become: yes
+
+- name: systemd | nginx | reloaded
+  systemd:
+    name: nginx
+    state: reloaded
+  become: yes

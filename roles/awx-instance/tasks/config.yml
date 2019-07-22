@@ -1,0 +1,34 @@
+---
+
+- name: config | create postgresql database
+  postgresql_db:
+    name: "{{ awx_database_name }}"
+  become: true
+  become_user: postgres
+
+- name: config | create user for postgresql
+  postgresql_user:
+    db: "{{ awx_database_name }}"
+    name: "{{ awx_database_user }}"
+  become: true
+  become_user: postgres
+
+- name: config | provide credentials.py file
+  template:
+    src: "credentials.py.j2"
+    dest: "{{ awx_config_dir }}/credentials.py"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: config | run awx migration scripts
+  shell: "awx-manage migrate"
+  environment:
+    AWX_SETTINGS_FILE: "{{ awx_config_dir }}/settings.py"
+  become: true
+  become_user: "{{ awx_user }}"
+
+- name: config | enable auto migrations
+  file:
+    path: "{{ awx_config_dir }}/{{ awx_auto_migrations_flag }}"
+    state: touch

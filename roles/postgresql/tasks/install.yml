@@ -1,0 +1,16 @@
+---
+
+- name: install | ensure postgresql service is installed
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - python-psycopg2
+
+- name: install | ensure postgresql is running and enabled
+  systemd:
+    name: postgresql
+    state: started
+    enabled: yes

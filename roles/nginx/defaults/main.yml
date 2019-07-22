@@ -1,0 +1,6 @@
+---
+
+nginx_dhparams_file: /etc/nginx/dhparam.pem
+nginx_dhparams_keysize: 2048
+
+awx_ui_path: "/usr/share/awx"

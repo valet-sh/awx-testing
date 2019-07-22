@@ -1,0 +1,21 @@
+---
+
+- name: systemd | memcached | started
+  systemd:
+    name: memcached
+    state: started
+
+- name: systemd | memcached | stopped
+  systemd:
+    name: memcached
+    state: stopped
+
+- name: systemd | memcached | restarted
+  systemd:
+    name: memcached
+    state: restarted
+
+- name: systemd | memcached | reloaded
+  systemd:
+    name: memcached
+    state: reloaded

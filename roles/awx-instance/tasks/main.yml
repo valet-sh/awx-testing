@@ -1,0 +1,11 @@
+---
+
+- name: main | include install tasks
+  include_tasks: install.yml
+
+- name: main | include config tasks
+  include_tasks: config.yml
+
+- name: main | include setup tasks
+  include_tasks: setup.yml
+  when: (awx_run_setup is defined) and (awx_run_setup|bool)

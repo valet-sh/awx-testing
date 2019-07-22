@@ -1,0 +1,25 @@
+---
+
+- name: install | add cloudsmith awx key for debian-stable repo
+  apt_key:
+    url: "https://dl.cloudsmith.io/public/valet-sh/debian-stable/cfg/gpg/gpg.10903E239D74F2B3.key"
+    state: present
+
+- name: install | add cloudsmith awx key for debian-testing repo
+  apt_key:
+    url: "https://dl.cloudsmith.io/public/valet-sh/debian-testing/cfg/gpg/gpg.B63B658377885BFD.key"
+    state: present
+
+- name: install | add cloudsmith awx key for debian-experimental repo
+  apt_key:
+    url: "https://dl.cloudsmith.io/public/valet-sh/debian-experimental/cfg/gpg/gpg.D15A8AA9D12FDAF0.key"
+    state: present
+
+- name: install | use awx reposoitpry
+  apt_repository:
+    repo: "deb https://dl.cloudsmith.io/public/valet-sh/{{ target_repository }}/deb/{{ target_distribution|lower }} {{ target_distribution_major_version|lower }} main"
+
+- name: install | install awx package
+  apt:
+    name: "awx"
+    state: present

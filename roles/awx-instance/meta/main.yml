@@ -1,0 +1,11 @@
+---
+
+allow_duplicates: false
+
+dependencies:
+  - { role: common }
+  - { role: vim }
+  - { role: memcached }
+  - { role: postgresql }
+  - { role: rabbitmq }
+  - { role: nginx, use_awx: true, nginx_mode_direct: true }

@@ -1,0 +1,26 @@
+awx_database_user: "awx"
+awx_database_name: "awx"
+awx_database_password:
+awx_database_host: "localhost"
+awx_database_port: "5432"
+
+awx_rabbitmq_user: "guest"
+awx_rabbitmq_password: "guest"
+awx_rabbitmq_host: "localhost"
+awx_rabbitmq_port: "5672"
+awx_rabbitmq_vhost: "%2F"
+
+awx_memcached_host: "localhost"
+awx_memcached_port: "11211"
+
+awx_email_host: "localhost"
+awx_email_port: "25"
+awx_email_host_user: ""
+awx_email_host_password: ""
+awx_email_use_tls: "False"
+
+
+awx_config_dir: "/etc/awx"
+awx_auto_migrations_flag: ".enable_auto_migrations"
+awx_user: awx
+awx_run_setup: false

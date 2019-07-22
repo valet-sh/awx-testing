@@ -1,0 +1,43 @@
+---
+
+- name: config | Clean up nginx stuff
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/nginx/sites-available
+    - /etc/nginx/sites-enabled
+    - /etc/nginx/snippets/snakeoil.conf
+
+- name: config | Create nginx conf.d dir
+  file:
+    path: /etc/nginx/conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: config | Generate dhparams file
+  shell: "openssl dhparam -out {{ nginx_dhparams_file }} {{ nginx_dhparams_keysize }}"
+  args:
+    creates: "{{ nginx_dhparams_file }}"
+
+- name: config | Override default config
+  template:
+    src: "nginx.conf.j2"
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: systemd | nginx | reloaded
+
+- name: config | Create awx config
+  template:
+    src: "awx.conf.j2"
+    dest: /etc/nginx/conf.d/awx.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: systemd | nginx | reloaded

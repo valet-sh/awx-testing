@@ -1,0 +1,4 @@
+---
+
+### required variables
+awx_run_setup: true
