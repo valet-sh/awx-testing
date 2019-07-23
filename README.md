@@ -17,10 +17,6 @@ ansible and lxd have to be installed on your system
 simply run one of the available playbooks. A new LXD container is created, awx and all required services are installed. The container will be automatically deleted if the install process was successful. More automated tests are planned (e.g. login test, starting a job).
 
 ```
-ansible-playbook playbooks/awx-debian9-experimental.yml
-ansible-playbook playbooks/awx-debian9-testing.yml
-ansible-playbook playbooks/awx-debian9-stable.yml
-
 ansible-playbook playbooks/awx-debian10-experimental.yml
 ansible-playbook playbooks/awx-debian10-testing.yml
 ansible-playbook playbooks/awx-debian10-stable.yml
