@@ -16,5 +16,6 @@ base_packages:
   - rsyslog
   - acl
   - apt-transport-https
+  - gnupg2
 
 timezone: Europe/Berlin
