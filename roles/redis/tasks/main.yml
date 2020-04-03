@@ -1,0 +1,17 @@
+---
+
+- name: ensure redis-server is installed
+  apt:
+    name: redis-server
+    state: present
+
+- name: ensure redis-tools is installed
+  apt:
+    name: redis-tools
+    state: present
+
+- name: ensure redis-server is running and enabled
+  service:
+    name: redis-server
+    state: started
+    enabled: yes

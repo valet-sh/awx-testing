@@ -1,15 +1,5 @@
-##
-# Copyright (c) 2018 TechDivision GmbH
-# All rights reserved
-#
-# This product includes proprietary software developed at TechDivision GmbH, Germany
-# For more information see http://www.techdivision.com/
-#
-# To obtain a valid license for using this software please contact us at
-# license@techdivision.com
-##
 ---
 
-- name: Install python2
-  raw: test -e /usr/bin/python && echo -n "ok" || (apt -y update && apt install -y python-minimal)
+- name: Install python3
+  raw: test -e /usr/bin/python3 && echo -n "ok" || (apt -y update && apt install -y python3-minimal)
   register: python_result

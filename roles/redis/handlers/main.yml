@@ -1,0 +1,21 @@
+---
+
+- name: systemd | redis-server | started
+  systemd:
+    name: redis-server
+    state: started
+
+- name: systemd | redis-server | stopped
+  systemd:
+    name: redis-server
+    state: stopped
+
+- name: systemd | redis-server | restarted
+  systemd:
+    name: redis-server
+    state: restarted
+
+- name: systemd | redis-server | reloaded
+  systemd:
+    name: redis-server
+    state: reloaded

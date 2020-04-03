@@ -7,5 +7,5 @@ dependencies:
   - { role: vim }
   - { role: memcached }
   - { role: postgresql }
-  - { role: rabbitmq }
+  - { role: redis }
   - { role: nginx, use_awx: true, nginx_mode_direct: true }
