@@ -2,7 +2,7 @@
 
 - name: install | ensure postgresql service is installed
   apt:
-    name: ['postgresql', 'postgresql-contrib', 'python-psycopg2']
+    name: ['postgresql', 'postgresql-contrib', 'python3-psycopg2']
     state: present
 
 - name: install | ensure postgresql is running and enabled
