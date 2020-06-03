@@ -21,11 +21,3 @@
     target_repository: "debian-experimental"
   roles:
     - awx-instance
-
-#- hosts: localhost
-#  gather_facts: true
-#  vars:
-#    instance_name: awx-debian10-experimental
-#    action: terminate
-#  roles:
-#    - lxd-container

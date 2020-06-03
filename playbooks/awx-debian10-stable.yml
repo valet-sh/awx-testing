@@ -21,11 +21,3 @@
     target_repository: "debian-stable"
   roles:
     - awx-instance
-
-- hosts: localhost
-  gather_facts: true
-  vars:
-    instance_name: awx-debian10-stable
-    action: terminate
-  roles:
-    - lxd-container
